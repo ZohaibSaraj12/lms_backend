@@ -6,19 +6,26 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const connection = mysql.createConnection({
-  host: process.env.MYSQLHOST,
-  user: process.env.MYSQLUSER,
+// index.js
+const mysql = require('mysql2');
+
+// db variable define karna mandatory hai
+const db = mysql.createConnection({
+  host: process.env.MYSQLHOST,      // Railway environment variable
+  user: process.env.MYSQLUSER,      // Railway environment variable
   password: process.env.MYSQLPASSWORD,
   database: process.env.MYSQLDATABASE,
   port: process.env.MYSQLPORT
 });
 
+// connect to database
 db.connect(err => {
-  if (err) throw err;
-  console.log('MySQL Connected');
+  if (err) {
+    console.error('Database connection failed:', err);
+    return;
+  }
+  console.log('Connected to MySQL database!');
 });
-
 
 
 // ================= STUDENTS =================
