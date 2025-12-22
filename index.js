@@ -11,11 +11,11 @@ const mysql = require('mysql2');
 
 // db variable define karna mandatory hai
 const db = mysql.createConnection({
-  host: process.env.DB_HOST,      // Railway environment variable
-  user: process.env.DB_USER,      // Railway environment variable
-  password: process.env.DB_PASS,
-  database: process.env.DATABASE,
-  port: process.env.DB_PORT || 3306
+  host: process.env.MYSQLHOST,      // Railway environment variable
+  user: process.env.MYSQLUSER,      // Railway environment variable
+  password: process.env.MYSQLPASSWORD,
+  database: process.env.MYSQL_DATABASE,
+  port: process.env.MYSQL_PORT || 3306
 });
 
 // connect to database
