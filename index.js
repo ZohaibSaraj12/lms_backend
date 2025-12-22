@@ -14,8 +14,8 @@ const db = mysql.createConnection({
   host: process.env.MYSQLHOST,      // Railway environment variable
   user: process.env.MYSQLUSER,      // Railway environment variable
   password: process.env.MYSQLPASSWORD,
-  database: process.env.MYSQL_DATABASE,
-  port: process.env.MYSQL_PORT || 3306
+  database: process.env.MYSQLDATABASE,
+  port: process.env.MYSQLPORT || 3306
 });
 
 // connect to database
