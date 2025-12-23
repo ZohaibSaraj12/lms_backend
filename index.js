@@ -9,8 +9,6 @@ app.use(express.json());
 // index.js
 const mysql = require('mysql2');
 
-// db variable define karna mandatory hai
-const mysql = require('mysql2');
 
 const db = mysql.createPool({
   host: process.env.MYSQLHOST,
