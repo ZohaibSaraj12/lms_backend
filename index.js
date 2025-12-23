@@ -10,22 +10,32 @@ app.use(express.json());
 const mysql = require('mysql2');
 
 // db variable define karna mandatory hai
-const db = mysql.createConnection({
-  host: process.env.MYSQLHOST,      // Railway environment variable
-  user: process.env.MYSQLUSER,      // Railway environment variable
+const mysql = require('mysql2');
+
+const db = mysql.createPool({
+  host: process.env.MYSQLHOST,
+  user: process.env.MYSQLUSER,
   password: process.env.MYSQLPASSWORD,
   database: process.env.MYSQL_DATABASE,
-  port: process.env.MYSQLPORT || 3306
+  port: process.env.MYSQLPORT || 3306,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
-// connect to database
-db.connect(err => {
+// test connection
+db.getConnection((err, connection) => {
   if (err) {
-    console.error('Database connection failed:', err);
-    return;
+    console.error('❌ MySQL Pool connection failed:', err);
+  } else {
+    console.log('✅ MySQL Pool Connected');
+    connection.release();
   }
-  console.log('Connected to MySQL database!');
 });
+
 
 
 // ================= STUDENTS =================
